@@ -16,13 +16,13 @@ URL:		https://github.com/eliben/pycparser
 %if %{with python2}
 BuildRequires:	python >= 2
 BuildRequires:	python-modules >= 2
-BuildRequires:	rpmbuild(macros) >= 1.219
 %endif
 %if %{with python3}
 BuildRequires:	python3 >= 3.2
 BuildRequires:	python3-devel >= 3.2
 %endif
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.612
 Requires:	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
