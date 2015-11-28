@@ -7,7 +7,7 @@ Summary:	C Parser in Python 2
 Summary(pl.UTF-8):	Parser języka C w Pythonie 2
 Name:		python-pycparser
 Version:	2.14
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://pypi.python.org/pypi/pycparser
