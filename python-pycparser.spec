@@ -6,13 +6,14 @@
 Summary:	C Parser in Python 2
 Summary(pl.UTF-8):	Parser języka C w Pythonie 2
 Name:		python-pycparser
-Version:	2.14
-Release:	3
+Version:	2.17
+Release:	1
 License:	BSD
 Group:		Libraries/Python
-#Source0Download: https://pypi.python.org/pypi/pycparser
-Source0:	https://pypi.python.org/packages/source/p/pycparser/pycparser-%{version}.tar.gz
-# Source0-md5:	a2bc8d28c923b4fe2b2c3b4b51a4f935
+#Source0:	https://pypi.python.org/packages/source/p/pycparser/pycparser-%{version}.tar.gz
+#Source0Download: https://github.com/eliben/pycparser/releases
+Source0:	https://github.com/eliben/pycparser/archive/release_v%{version}/pycparser-%{version}.tar.gz
+# Source0-md5:	4c2f7f6311c6d9a6f1887c80724675d9
 URL:		https://github.com/eliben/pycparser
 %if %{with python2}
 BuildRequires:	python >= 2
@@ -63,7 +64,7 @@ aplikacjach wymagających analizy kodu źródłowego w C.
 Ten pakiet zawiera moduł Pythona 3.
 
 %prep
-%setup -q -n pycparser-%{version}
+%setup -q -n pycparser-release_v%{version}
 
 %build
 %if %{with python2}
@@ -92,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc CHANGES LICENSE README.rst
+%doc CHANGES CONTRIBUTORS LICENSE README.rst
 %dir %{py_sitescriptdir}/pycparser
 %{py_sitescriptdir}/pycparser/*.py[co]
 %{py_sitescriptdir}/pycparser/_c_ast.cfg
@@ -104,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-pycparser
 %defattr(644,root,root,755)
-%doc CHANGES LICENSE README.rst
+%doc CHANGES CONTRIBUTORS LICENSE README.rst
 %dir %{py3_sitescriptdir}/pycparser
 %{py3_sitescriptdir}/pycparser/*.py
 %{py3_sitescriptdir}/pycparser/_c_ast.cfg
