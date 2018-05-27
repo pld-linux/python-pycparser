@@ -1,19 +1,19 @@
 #
 # Conditional build:
-%bcond_without  python2 # CPython 2.x module
-%bcond_without  python3 # CPython 3.x module
+%bcond_without	python2 # CPython 2.x module
+%bcond_without	python3 # CPython 3.x module
+%bcond_without	tests	# unit tests
 #
 Summary:	C Parser in Python 2
 Summary(pl.UTF-8):	Parser języka C w Pythonie 2
 Name:		python-pycparser
-Version:	2.17
-Release:	2
+Version:	2.18
+Release:	1
 License:	BSD
 Group:		Libraries/Python
-#Source0:	https://pypi.python.org/packages/source/p/pycparser/pycparser-%{version}.tar.gz
-#Source0Download: https://github.com/eliben/pycparser/releases
-Source0:	https://github.com/eliben/pycparser/archive/release_v%{version}/pycparser-%{version}.tar.gz
-# Source0-md5:	4c2f7f6311c6d9a6f1887c80724675d9
+#Source0Download: https://pypi.org/simple/pycparser/
+Source0:	https://files.pythonhosted.org/packages/source/p/pycparser/pycparser-%{version}.tar.gz
+# Source0-md5:	72370da54358202a60130e223d488136
 URL:		https://github.com/eliben/pycparser
 %if %{with python2}
 BuildRequires:	python >= 2
@@ -64,14 +64,23 @@ aplikacjach wymagających analizy kodu źródłowego w C.
 Ten pakiet zawiera moduł Pythona 3.
 
 %prep
-%setup -q -n pycparser-release_v%{version}
+%setup -q -n pycparser-%{version}
 
 %build
 %if %{with python2}
 %py_build
+
+%if %{with tests}
+%{__python} tests/all_tests.py
 %endif
+%endif
+
 %if %{with python3}
 %py3_build
+
+%if %{with tests}
+%{__python3} tests/all_tests.py
+%endif
 %endif
 
 %install
@@ -93,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc CHANGES CONTRIBUTORS LICENSE README.rst
+%doc CHANGES LICENSE README.rst
 %dir %{py_sitescriptdir}/pycparser
 %{py_sitescriptdir}/pycparser/*.py[co]
 %{py_sitescriptdir}/pycparser/_c_ast.cfg
@@ -105,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-pycparser
 %defattr(644,root,root,755)
-%doc CHANGES CONTRIBUTORS LICENSE README.rst
+%doc CHANGES LICENSE README.rst
 %dir %{py3_sitescriptdir}/pycparser
 %{py3_sitescriptdir}/pycparser/*.py
 %{py3_sitescriptdir}/pycparser/_c_ast.cfg
