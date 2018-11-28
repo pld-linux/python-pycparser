@@ -16,16 +16,18 @@ Source0:	https://files.pythonhosted.org/packages/source/p/pycparser/pycparser-%{
 # Source0-md5:	76396762adc3fa769c83d8e202d36b6f
 URL:		https://github.com/eliben/pycparser
 %if %{with python2}
-BuildRequires:	python >= 2
-BuildRequires:	python-modules >= 2
+BuildRequires:	python >= 1:2.7
+BuildRequires:	python-modules >= 1:2.7
+BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
-BuildRequires:	python3 >= 1:3.2
-BuildRequires:	python3-devel >= 1:3.2
+BuildRequires:	python3 >= 1:3.4
+BuildRequires:	python3-devel >= 1:3.4
+BuildRequires:	python3-setuptools
 %endif
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
-Requires:	python-modules
+BuildRequires:	rpmbuild(macros) >= 1.714
+Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,7 +49,7 @@ Ten pakiet zawiera moduł Pythona 2.
 Summary:	C Parser in Python 3
 Summary(pl.UTF-8):	Parser języka C w Pythonie 3
 Group:		Libraries/Python
-Requires:	python3-modules
+Requires:	python3-modules >= 1:3.4
 
 %description -n python3-pycparser
 pycparser is a parser for the C language, written in pure Python. It
